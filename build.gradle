@@ -1,7 +1,14 @@
-plugins {
-    id 'org.springframework.boot' version '1.5.9.RELEASE'
-    id 'java'
+buildscript {
+    repositories {
+        maven { url 'http://maven.aliyun.com/nexus/content/groups/public/' }
+    }
+    dependencies {
+        classpath("org.springframework.boot:spring-boot-gradle-plugin:1.5.9.RELEASE")
+    }
 }
+
+apply plugin: 'java'
+apply plugin: 'org.springframework.boot'
 
 sourceCompatibility = 1.8
 targetCompatibility = 1.8
@@ -16,5 +23,10 @@ repositories {
 }
 
 dependencies {
-    compile 'org.springframework.boot:spring-boot-starter-web:1.5.9.RELEASE'
+    compile("org.springframework.boot:spring-boot-starter-thymeleaf")
+    compile("org.springframework.boot:spring-boot-devtools")
+    testCompile("org.springframework.boot:spring-boot-starter-test")
+
+    // Uncomment out the code when packaging as war.
+    // providedRuntime 'org.springframework.boot:spring-boot-starter-tomcat'
 }
